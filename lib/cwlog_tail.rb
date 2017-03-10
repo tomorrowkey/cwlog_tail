@@ -8,7 +8,7 @@ module CwlogTail
   end
 
   def self.lines
-    idx = ARGV.index('-l') || ARGV.index('--lines')
+    idx = ARGV.index('-n') || ARGV.index('--lines')
     if idx.nil?
       nil
     else
