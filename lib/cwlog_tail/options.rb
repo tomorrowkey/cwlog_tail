@@ -5,7 +5,7 @@ module CwlogTail
     end
 
     def follow?
-      @argv.member?('-f')
+      @argv.member?('-f') || @argv.member?('--follow')
     end
 
     def lines
