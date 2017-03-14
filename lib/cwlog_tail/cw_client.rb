@@ -39,18 +39,18 @@ module CwlogTail
           log_stream_name: log_stream_name,
           next_token: last_token
         }
-        if options[:lines].nil?
+        if options.lines.nil?
           log_options[:start_from_head] = true
           log_options[:limit] = DEFAULT_LINES
         else
           log_options[:start_from_head] = false
-          log_options[:limit] = options[:lines]
+          log_options[:limit] = options.lines
         end
         pages = client.get_log_events(log_options)
         pages.events.each { |event| yield(event) }
 
         if last_token == pages.next_forward_token
-          if options[:follow]
+          if options.follow?
             sleep TAIL_INTERVAL
           else
             break
