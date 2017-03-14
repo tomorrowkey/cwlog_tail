@@ -1,27 +1,9 @@
 require 'cwlog_tail/version'
 require 'cwlog_tail/cw_client'
+require 'cwlog_tail/options'
 require 'peco_selector'
 
 module CwlogTail
-  def self.follow?
-    ARGV.member?('-f')
-  end
-
-  def self.lines
-    idx = ARGV.index('-n') || ARGV.index('--lines')
-    if idx.nil?
-      nil
-    else
-      ARGV[idx + 1].to_i
-    end
-  end
-
-  def self.options
-    { follow: follow?,
-      lines: lines,
-    }
-  end
-
   client = CwClient.new
 
   log_group_name = PecoSelector.select_from(client.log_group_names).first
@@ -33,7 +15,7 @@ module CwlogTail
   exit 0 unless log_stream_name
 
   begin
-    client.tail_stream(log_group_name, log_stream_name, options) do |event|
+    client.tail_stream(log_group_name, log_stream_name, Options.new(ARGV)) do |event|
       puts "[#{Time.at(event.timestamp / 1000)}] #{event.message}"
     end
   rescue Interrupt
