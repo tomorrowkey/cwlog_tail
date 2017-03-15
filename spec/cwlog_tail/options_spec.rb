@@ -63,4 +63,31 @@ describe CwlogTail::Options do
       end
     end
   end
+
+  describe '#interval' do
+    context 'when do not set any args' do
+      let(:argv) { [] }
+
+      it 'returns default value' do
+        expect(options.interval).to eq(CwlogTail::Options::DEFAULT_INTERVAL)
+      end
+    end
+
+    context 'when set 3 second with --interval' do
+      let(:argv) { ['--interval', '3'] }
+
+      it 'returns 3' do
+        expect(options.interval).to eq(3)
+      end
+    end
+
+    context 'when missing numeric' do
+      let(:argv) { ['--interval'] }
+
+      it 'returns default value' do
+        expect(options.interval).to eq(CwlogTail::Options::DEFAULT_INTERVAL)
+      end
+    end
+
+  end
 end

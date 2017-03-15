@@ -1,5 +1,7 @@
 module CwlogTail
   class Options
+    DEFAULT_INTERVAL = 5
+
     def initialize(argv)
       @argv = argv
     end
@@ -16,6 +18,16 @@ module CwlogTail
       return nil if lines == 0
 
       lines
+    end
+
+    def interval
+      idx = @argv.index('--interval')
+      return DEFAULT_INTERVAL unless idx
+
+      interval = @argv[idx + 1].to_i
+      return DEFAULT_INTERVAL if interval == 0
+
+      interval
     end
   end
 end

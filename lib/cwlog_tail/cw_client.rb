@@ -2,7 +2,6 @@ require 'aws-sdk'
 
 module CwlogTail
   class CwClient
-    TAIL_INTERVAL = 5
     DEFAULT_LINES = 100
     DEFAULT_PAGE_COUNT = 3
 
@@ -51,7 +50,7 @@ module CwlogTail
 
         if last_token == pages.next_forward_token
           if options.follow?
-            sleep TAIL_INTERVAL
+            sleep options.interval
           else
             break
           end
