@@ -10,11 +10,12 @@ module CwlogTail
 
     def lines
       idx = @argv.index('-n') || @argv.index('--lines')
-      if idx.nil?
-        nil
-      else
-        @argv[idx + 1].to_i
-      end
+      return nil unless idx
+
+      lines = @argv[idx + 1].to_i
+      return nil if lines == 0
+
+      lines
     end
   end
 end
