@@ -1,7 +1,13 @@
-cwlog_tail
+cwlog_tail [![Gem Version](https://badge.fury.io/rb/cwlog_tail.svg)](https://badge.fury.io/rb/cwlog_tail) [![CircleCI](https://circleci.com/gh/tomorrowkey/cwlog_tail/tree/master.svg?style=svg)](https://circleci.com/gh/tomorrowkey/cwlog_tail/tree/master)
 ===============
 
 tail AWS CloudWatch logs on terminal
+
+# Installation
+
+```
+$ gem install cwlog_tail
+```
 
 # License
 
