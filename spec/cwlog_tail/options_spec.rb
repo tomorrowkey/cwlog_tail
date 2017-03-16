@@ -105,4 +105,38 @@ describe CwlogTail::Options do
       end
     end
   end
+
+  describe '#page_count' do
+    context 'when do not set any args' do
+      let(:argv) { [] }
+
+      it 'returns default value' do
+        expect(options.page_count).to eq(CwlogTail::Options::DEFAULT_PAGE_COUNT)
+      end
+    end
+
+    context 'when set 3 second with --page_count' do
+      let(:argv) { ['--page_count', '3'] }
+
+      it 'returns 3' do
+        expect(options.page_count).to eq(3)
+      end
+    end
+
+    context 'when missing numeric' do
+      let(:argv) { ['--page_count'] }
+
+      it 'returns default value' do
+        expect(options.page_count).to eq(CwlogTail::Options::DEFAULT_PAGE_COUNT)
+      end
+    end
+
+    context 'when set negative value' do
+      let(:argv) { ['--page_count', '-1'] }
+
+      it 'returns default value' do
+        expect(options.page_count).to eq(CwlogTail::Options::DEFAULT_PAGE_COUNT)
+      end
+    end
+  end
 end
