@@ -15,7 +15,7 @@ module CwlogTail
       return nil unless idx
 
       lines = @argv[idx + 1].to_i
-      return nil if lines == 0
+      return nil if lines <= 0
 
       lines
     end
@@ -25,7 +25,7 @@ module CwlogTail
       return DEFAULT_INTERVAL unless idx
 
       interval = @argv[idx + 1].to_i
-      return DEFAULT_INTERVAL if interval == 0
+      return DEFAULT_INTERVAL if interval <= 0
 
       interval
     end

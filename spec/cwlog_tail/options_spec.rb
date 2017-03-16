@@ -62,6 +62,14 @@ describe CwlogTail::Options do
         expect(options.lines).to be_nil
       end
     end
+
+    context 'when set negative value' do
+      let(:argv) { ['-n', '-1'] }
+
+      it 'returns nil' do
+        expect(options.lines).to be_nil
+      end
+    end
   end
 
   describe '#interval' do
@@ -89,5 +97,12 @@ describe CwlogTail::Options do
       end
     end
 
+    context 'when set negative value' do
+      let(:argv) { ['--interval', '-1'] }
+
+      it 'returns default value' do
+        expect(options.interval).to eq(CwlogTail::Options::DEFAULT_INTERVAL)
+      end
+    end
   end
 end
