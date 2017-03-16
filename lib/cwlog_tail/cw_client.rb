@@ -3,7 +3,6 @@ require 'aws-sdk'
 module CwlogTail
   class CwClient
     DEFAULT_LINES = 100
-    DEFAULT_PAGE_COUNT = 3
 
     def client
       @cloudwatch ||= Aws::CloudWatchLogs::Client.new
@@ -17,7 +16,7 @@ module CwlogTail
       log_groups.map(&:log_group_name)
     end
 
-    def log_streams(log_group_name, page_count = DEFAULT_PAGE_COUNT)
+    def log_streams(log_group_name, page_count)
       next_token = nil
       @log_streams ||= page_count.times.each.with_object([]) { |_, results|
         log_streams = client.describe_log_streams(
