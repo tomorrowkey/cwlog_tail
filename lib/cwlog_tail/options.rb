@@ -40,5 +40,19 @@ module CwlogTail
 
       page_count
     end
+
+    def log_group
+      idx = @argv.index('--log_group')
+      return nil unless idx
+
+      @argv[idx + 1]
+    end
+
+    def log_stream
+      idx = @argv.index('--log_stream')
+      return nil unless idx
+
+      @argv[idx + 1]
+    end
   end
 end

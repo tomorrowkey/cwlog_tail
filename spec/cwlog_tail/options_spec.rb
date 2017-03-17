@@ -139,4 +139,56 @@ describe CwlogTail::Options do
       end
     end
   end
+
+  describe '#log_group' do
+    context 'when do not set any args' do
+      let(:argv) { [] }
+
+      it 'returns nil' do
+        expect(options.log_group).to be_nil
+      end
+    end
+
+    context 'when missing value' do
+      let(:argv) { ['--log_group'] }
+
+      it 'returns nil' do
+        expect(options.log_group).to be_nil
+      end
+    end
+
+    context 'when set `my_log_group` with --log_group' do
+      let(:argv) { ['--log_group', 'my_log_group'] }
+
+      it 'returns `my_log_group`' do
+        expect(options.log_group).to eq('my_log_group')
+      end
+    end
+  end
+
+  describe '#log_stream' do
+    context 'when do not set any args' do
+      let(:argv) { [] }
+
+      it 'returns nil' do
+        expect(options.log_stream).to be_nil
+      end
+    end
+
+    context 'when missing value' do
+      let(:argv) { ['--log_stream'] }
+
+      it 'returns nil' do
+        expect(options.log_stream).to be_nil
+      end
+    end
+
+    context 'when set `my_log_stream` with --log_stream' do
+      let(:argv) { ['--log_stream', 'my_log_stream'] }
+
+      it 'returns `my_log_stream`' do
+        expect(options.log_stream).to eq('my_log_stream')
+      end
+    end
+  end
 end
