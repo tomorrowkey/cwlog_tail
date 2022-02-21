@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cwlog_tail (0.0.2)
+    cwlog_tail (0.0.3)
       aws-sdk (~> 2.8)
       peco_selector (~> 1.0)
 
