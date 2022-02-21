@@ -9,7 +9,7 @@ module CwlogTail
     end
 
     def log_groups
-      client.describe_log_groups.log_groups
+      client.describe_log_groups.each_page.to_a.map(&:log_groups).flatten
     end
 
     def log_group_names
