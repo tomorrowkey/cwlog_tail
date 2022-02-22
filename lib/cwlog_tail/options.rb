@@ -54,5 +54,9 @@ module CwlogTail
 
       @argv[idx + 1]
     end
+
+    def version?
+      @argv.member?('--version')
+    end
   end
 end

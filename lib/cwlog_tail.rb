@@ -7,6 +7,11 @@ module CwlogTail
   client = CwClient.new
   options = Options.new(ARGV)
 
+  if options.version?
+    puts VERSION
+    exit 0
+  end
+
   log_group_name = options.log_group || PecoSelector.select_from(client.log_group_names).first
   exit 0 unless log_group_name
 
